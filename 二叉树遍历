@@ -1,0 +1,43 @@
+#include<stdio.h>
+#include<malloc.h>
+
+typedef char DTDataType;
+typedef struct TreeNode Node;
+typedef struct TreeNode
+{
+    DTDataType _val;
+    struct TreeNode* _left;
+    struct TreeNode* _right;
+}Node;
+
+Node* MyTreeCreate(char* str,int* i)
+{
+    if(str[*i]=='#')
+        return NULL;
+    Node* node=(Node*)malloc(sizeof(Node));
+    node->_val=str[*i];
+    ++(*i);
+    node->_left=MyTreeCreate(str,i);
+    ++(*i);
+    node->_right=MyTreeCreate(str,i);
+    return node;
+}
+
+void inorder(Node* root)
+{
+    if(root==NULL)
+        return;
+    inorder(root->_left);
+    printf("%c ",root->_val);
+    inorder(root->_right);
+}
+
+int main()
+{
+    char str[100];
+    scanf("%s",str);
+    int i=0;
+    Node* tree=MyTreeCreate(str,&i);
+    inorder(tree);
+    return 0;
+}
