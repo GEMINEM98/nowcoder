@@ -1,0 +1,30 @@
+/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};
+*/
+
+class Solution {
+public:
+    
+    void Swap(TreeNode ** a,TreeNode ** b)
+    {
+        TreeNode * x=*a;
+        *a=*b;
+        *b=x;
+    }
+    void Mirror(TreeNode *pRoot) 
+    {
+        if(pRoot==NULL)
+            return;
+        
+        Swap(&pRoot->left,&pRoot->right);
+        Mirror(pRoot->left);
+        Mirror(pRoot->right);
+    }
+};
