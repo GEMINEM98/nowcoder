@@ -1,0 +1,17 @@
+class Solution {
+public:
+	void replaceSpace(char *str,int length) 
+    {
+        string s(str);
+        for(int i=0;i<s.size();++i)
+        {
+            if(s[i]==' ')
+            {
+                s.replace(i,1,"%20");//将下标为i的后1个字符替换为“%20”
+            }
+        }
+        const char* tmp=s.c_str();//以C的格式拷贝
+        strcpy(str,tmp);
+        return;
+	}
+};
