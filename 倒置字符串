@@ -1,0 +1,25 @@
+
+//将一句话的单词进行倒置，标点不倒置。比如 I like beijing. 经过函数后变为：beijing. like I
+
+#include<iostream>
+#include<string>
+#include<vector>
+
+using namespace std;
+
+int main()
+{
+    vector<string> v;
+    string s;
+    while(cin >> s)
+    {
+        v.push_back(s); //v中每一个元素都是一个string
+    }
+    int i=0;
+    for(i=v.size()-1;i>0;--i)
+    {
+        cout << v[i] << ' ';
+    }
+    cout << v[i] << endl;  // 最后一个输出后，后面没有空格
+    return 0;
+}
