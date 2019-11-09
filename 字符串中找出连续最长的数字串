@@ -1,0 +1,51 @@
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+int main()
+{
+    //定义两个string来回倒
+    //s1 记录遍历的所有连续串，s2 记录当前最长的串，当做返回值
+    //如果 s1的串长度 > s2的串长度  则 将 s2更新，并把s1清空，用来进行下一次循环
+    //循环一次，比较一次，保证s2的是当前最长的串
+    //注意：最后一个串比较完后，需要单独进行判断是否为最长串
+    string s;
+    string s1;
+    string s2;
+    while(getline(cin,s))
+    {
+        int i=1;
+        int j=1;
+        while(i<s.size())
+        {
+            if(i==j)
+                s1.push_back(s[i-1]);
+            if(s[i-1]+1==s[i])
+            {
+                s1.push_back(s[i]);
+                ++i;
+                continue;
+            }
+            else
+            {
+                ++i;
+                j=i;
+                if(s1.size()>s2.size())
+                {
+                    s2=s1;
+                }
+                s1.clear();
+            }
+        }
+        if(i==s.size())
+        {
+            if(s1.size()>s2.size())
+            {
+                s2=s1;
+            }
+        }
+        cout << s2 << endl;
+    }
+    return 0;
+}
