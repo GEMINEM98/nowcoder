@@ -1,0 +1,33 @@
+
+//给定一个十进制数M，以及需要转换的进制数N。将十进制数M转化为N进制数
+//为每个测试实例输出转换后的数，每个输出占一行。如果N大于9，则对应的数字规则参考16进制（比如，10用A表示，等等）
+
+#include<iostream>
+#include<string>
+
+using namespace std;
+int main()
+{
+    int m=0;
+    int n=0;
+    int flag=0;
+    string s;//记录结果
+    string ch="0123456789ABCDEF";
+    cin >> m >> n;
+    if(m<0)
+    {
+        flag=1;
+        m*=-1;
+    }
+    while(m!=0)
+    {
+        s=ch[m%n]+s;
+        m/=n;
+    }
+    if(flag==1)
+    {
+        s='-'+s;
+    }
+    cout << s << endl;
+    return 0;
+}
