@@ -1,0 +1,46 @@
+#include<iostream>
+#include<vector>
+#include<string>
+using namespace std;
+
+bool func1(vector<string> v)//按照字典排序
+{
+	for (int i = 1; i < v.size(); ++i)
+	{
+		if (v[i - 1] > v[i])
+			return false;
+	}
+	return true;
+}
+
+bool func2(vector<string> v)//按照长度排序
+{
+	for (int i = 1; i < v.size(); ++i)
+	{
+		if (v[i - 1].size() > v[i].size())
+			return false;
+	}
+	return true;
+}
+
+int main()
+{
+	int n = 0;
+	cin >> n;
+	getchar();//吸收掉多余的一个回车
+	vector<string> v;
+	string s;
+	for (int i = 0; i < n; ++i)
+	{
+		getline(cin, s);
+		v.push_back(s);
+	}
+	if (func1(v) && func2(v))
+		cout << "both" << endl;
+	else if (func2(v))
+		cout << "lengths" << endl;
+	else if (func1(v))
+		cout << "lexicographically" << endl;
+	else cout << "none" << endl;
+	return 0;
+}
