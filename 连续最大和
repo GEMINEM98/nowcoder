@@ -1,0 +1,35 @@
+
+//一个数组有 N 个元素，求连续子数组的最大和。 例如：[-1,2,1]，和最大的连续子数组为[2,1]，其和为 3
+
+#include<iostream>
+#include<vector>
+using namespace std;
+int main()
+{
+    int n=0;
+    int num=0;
+    vector<int> v;
+    cin >> n;
+    for(int i=0;i<n;++i)
+    {
+        cin >> num;
+        v.push_back(num);
+    }
+    int add=v[0];
+    int tmp=v[0];
+    for(int j=1;j<v.size();++j)
+    {
+        if(add<0)
+        {
+            add=v[j];
+        }
+        else add+=v[j];
+        
+        if(add>tmp)
+        {
+            tmp=add;
+        }
+    }
+    cout << tmp << endl;
+    return 0;
+}
