@@ -1,0 +1,100 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+int length(string s)
+{
+    int sz=s.size();
+    if(sz<=4)
+        return 5;
+    else if(sz<=7)
+        return 10;
+    else return 25;
+}
+
+int alphabet(string s)
+{
+    int big=0;
+    int small=0;
+    for(int i=0;i<s.size();++i)
+    {
+        if(s[i]>='A'&&s[i]<='Z')
+            ++big;
+        else if(s[i]>='a'&&s[i]<='z')
+            ++small;
+    }
+    if((big==0)&&(small==0))
+        return 0;
+    else if(big==0||small==0)
+        return 10;
+    else return 20;
+}
+
+int number(string s)
+{
+    int count=0;
+    for(int i=0;i<s.size();++i)
+    {
+        if(s[i]>='0'&&s[i]<='9')
+            ++count;
+    }
+    if(count==0)
+        return 0;
+    else if(count==1)
+        return 10;
+    else return 20;
+}
+
+int character(string s)
+{
+    int count=0;
+    char ch;
+    for(int i=0;i<s.size();++i)
+    {
+        ch=s[i];
+        if((ch>=33 && ch<=47) || (ch>=58 && ch<=64) 
+           || (ch>=91 && ch<=96) || (ch>=123 && ch<=126) )
+        {
+            ++count;
+        }
+    }
+    if(count==0)
+        return 0;
+    else if(count==1)
+        return 10;
+    else return 25;
+}
+
+int reward(string s)
+{
+    if(alphabet(s)>10&&number(s)&&character(s))
+        return 5;
+    else if(alphabet(s)&&number(s)&&character(s))
+        return 3;
+    else if(alphabet(s)&&number(s))
+        return 2;
+}
+
+int main()
+{
+    string s;
+    int add=0;
+    while(getline(cin,s))
+    {
+        add=length(s)+alphabet(s)+number(s)+character(s)+reward(s);
+        if(add>=90)
+            cout << "VERY_SECURE" << endl;
+        else if(add>=80)
+            cout << "SECURE" << endl;
+        else if(add>=70)
+            cout << "VERY_STRONG" << endl;
+        else if(add>=60)
+            cout << "STRONG" << endl;
+        else if(add>=50)
+            cout << "AVERAGE" << endl;
+        else if(add>=25)
+            cout << "WEAK" << endl;
+        else cout << "VERY_WEAK" << endl;
+    }
+    return 0;
+}
