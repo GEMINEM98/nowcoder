@@ -1,0 +1,17 @@
+
+//有一棵无穷大的满二叉树，其结点按根结点一层一层地从左往右依次编号，根结点编号为1。现在有两个结点a，b。请设计一个算法，求出a和b点的最近公共祖先的编号。
+//https://www.nowcoder.com/questionTerminal/70e00e490b454006976c1fdf47f155d9
+
+class LCA {
+public:
+    int getLCA(int a, int b) {
+        // write code here
+        if(a==b)
+            return a;
+        else if(a>b)
+            return getLCA(a/2,b);
+        else 
+            return getLCA(a,b/2);
+        
+    }
+};
