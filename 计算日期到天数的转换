@@ -1,0 +1,45 @@
+
+//输出该日期是该年的第几天
+//https://www.nowcoder.com/questionTerminal/769d45d455fe40b385ba32f97e7bcded
+
+#include<iostream>
+using namespace std;
+
+bool LeapYear(int year)
+{
+    if((year%4==0)&&(year%100!=0))
+    {
+        return true;
+    }
+    else if(year%400==0)
+        return true;
+    else return false;
+}
+int main()
+{
+    int year=0;
+    int month=0;
+    int day=0;
+    while(cin >> year)
+    {
+        int number=0;
+        cin >> month;
+        cin >> day;
+        //闰年二月29天，平年二月28天
+        int count[13]={0,31,28,31,30,31,30,31,31,30,31,30,31};
+        if(LeapYear(year))
+            count[2]=29;
+        if(month==1)
+            number=day;
+        else
+        {
+            for(int i=1;i<month;++i)
+            {
+                number+=count[i];
+            }
+            number+=day;
+        }
+        cout << number << endl;
+    }
+    return 0;
+}
