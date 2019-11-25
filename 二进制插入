@@ -6,32 +6,28 @@
 
 //https://www.nowcoder.com/questionTerminal/30c1674ad5694b3f8f0bc2de6f005490
 
+
 class BinInsert {
 public:
     int binInsert(int n, int m, int j, int i) {
-        // write code here
-        //先取n的二进制位
-        vector<int> v;
-        int add=0;
-        for(int k=0;k<32;++k)
-        {
-            v.push_back((n>>k)&1);
-        }
-        reverse(v.begin(),v.end());
-        int s=0;
+
+        /* 方法一：直接将 m 移动合适的位置，与 n 按位或即可 */
+        n=n|(m<<j);
+        return n;
+        
+        
+        /* 方法二：循环直接按位或
+        int k=0;
+        int tmp=0;
         while(j<=i)
         {
-            v[v.size()-j-1]=(m>>s)&1;
+            tmp=(n>>j)|(m>>k);
+            n=n|(tmp<<j);
+            ++k;
             ++j;
-            ++s;
         }
-        for(int t=0;t<32;++t)
-        {
-            if(v[t]==1)
-            {
-                add+=pow(2,v.size()-t-1);
-            }
-        }
-        return add;
+        return n;
+        */
     }
 };
+
