@@ -1,0 +1,56 @@
+
+
+//给定一个二维数组board，代表当前棋盘，其中元素为1的代表是当前玩家的棋子，为0表示没有棋子，为-1代表是对方玩家的棋子。
+
+//https://www.nowcoder.com/practice/e1bb714eb9924188a0d5a6df2216a3d1?tpId=8&&tqId=11055&rp=1&ru=
+
+class Board {
+public:
+    bool checkWon(vector<vector<int> > board) {
+        // write code here
+        int sum=0;
+        int flag=board[0].size();
+        
+        //判断主对角线
+        for(int i=0;i<flag;++i)
+        {
+            sum+=board[i][i];
+        }
+        if(sum==3)
+            return true;
+        
+        //判断副对角线
+        sum=0;
+        for(int i=0;i<flag;++i)
+        {
+            sum+=board[i][flag-i];
+        }
+        if(sum==3)
+            return true;
+        
+        //判断行
+        for(int i=0;i<flag;++i)
+        {
+            sum=0;
+            for(int j=0;j<flag;++j)
+            {
+                sum+=board[i][j];
+            }
+            if(sum==3)
+                return true;
+        }
+        
+        //判断列
+        for(int i=0;i<flag;++i)
+        {
+            sum=0;
+            for(int j=0;j<flag;++j)
+            {
+                sum+=board[j][i];
+            }
+            if(sum==3)
+                return true;
+        }
+        return false;
+    }
+};
