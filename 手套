@@ -1,0 +1,35 @@
+
+/*
+思路：
+根据题意：至少需要将左手手套，除了数量最少的那种颜色之外，其余的颜色手套全部拿走，再+1，这才能保证每种颜色的左手手套都拿到。（最坏情况）
+右手同理：至少需要将右手手套，除了数量最少的那种颜色之外，其余的颜色手套全部拿走，再+1，这才能保证每种颜色的右手手套都拿到。（最坏情况）
+特殊情况：左右手套中，数量为0的那种颜色的手套，在对应的另一方必须全部拿完。
+在上述拿到左右手套的数量中，选出一个数量小的，再加上特殊情况，即可。
+*/
+
+
+class Gloves {
+public:
+    int findMinimum(int n, vector<int> left, vector<int> right) {
+        // write code here
+        int sum=0;
+        int leftsum=0;
+        int rightsum=0;
+        int leftmin=INT_MAX;  //INT_MAX：最大整数
+        int rightmin=INT_MAX;
+        
+        for(int i=0;i<n;++i)
+        {
+            if(left[i]*right[i]==0)
+                sum+=left[i]+right[i];
+            else
+            {
+                leftmin=min(leftmin,left[i]);
+                rightmin=min(rightmin,right[i]);
+                leftsum+=left[i];
+                rightsum+=right[i];
+            }
+        }
+        return sum+min(leftsum-leftmin+1,rightsum-rightmin+1)+1; //最后的+1是在一方最小的情况下，再+1，得出两方最小的情况
+    }
+};
