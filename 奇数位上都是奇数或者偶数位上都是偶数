@@ -1,0 +1,39 @@
+
+/*
+思路：
+将数组的最后一位作为标志位，
+i从开始往后遍历偶数位；j从开始往后遍历奇数位；
+当最后一位是偶数的时候，与i下标元素交换，i+=2;
+当最后一位是奇数的时候，与j下标元素交换，j+=2;
+数组的最后一位每次都会被更新，直到所有元素遍历完毕。
+*/
+
+
+class Solution {
+public:
+    /**
+     *  奇数位上都是奇数或者偶数位上都是偶数
+     *  输入：数组arr，长度大于2
+     *  len：arr的长度
+     *  将arr调整成奇数位上都是奇数或者偶数位上都是偶数
+     */
+    
+    void oddInOddEvenInEven(vector<int>& arr, int len) 
+    {
+        int i=0;
+        int j=1;
+        while(i<len&&j<len)
+        {
+            if(arr[len-1]%2==0)
+            {
+                swap(arr[i],arr[len-1]);
+                i+=2;
+            }
+            else
+            {
+                swap(arr[j],arr[len-1]);
+                j+=2;
+            }
+        }
+    }
+};
