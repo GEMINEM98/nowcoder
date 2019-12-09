@@ -1,0 +1,40 @@
+
+/*
+
+思路：
+用范围for遍历string s，判断每一个元素，并且可以把字母分为2组；
+一组是需要循环追溯到字母表尾部的字母；
+一组是直接向前找字母；
+只需要找到规律就可以，最后输出。
+
+*/
+
+
+// write your code here cpp
+#include<iostream>
+#include<string>
+using namespace std;
+
+int main()
+{
+    string s;
+    while(getline(cin,s))
+    {
+        for(auto& e:s)
+        {
+            if(e>='A'&&e<='Z')
+            {
+                if(e<'F')
+                    e=26-('F'-e)+'A';
+                else
+                    e=e-5;
+            }
+        }
+        for(auto& e:s)
+        {
+            cout << e;
+        }
+        cout << endl;
+    }
+    return 0;
+}
