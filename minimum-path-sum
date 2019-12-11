@@ -1,0 +1,37 @@
+
+/*
+思路：动态规划
+因为需要求出从(0,0)到(i,j)的最短路径
+所以，状态方程是：F(i,j)=min(F(i,j-1),F(i-1,j))+grid[i][j];
+但是，有两个特殊情况需要单独处理：
+        第一行：F(0,j)=F(0,j-1)+grid[0][j]
+        第一列：F(i,0)=F(i-1,0)+grid[i][0]
+初始值：F(0,0)=grid[0][0]
+返回值：F(row-1,col-1)
+
+*/
+
+
+class Solution {
+public:
+    int minPathSum(vector<vector<int> > &grid) 
+    {
+        int row=grid.size();
+        int col=grid[0].size();
+        vector<vector<int>> v(grid);
+        
+        for(int i=1;i<row;++i)   // 第一行
+            v[i][0]+=v[i-1][0];
+        for(int i=1;i<col;++i)   // 第一列
+            v[0][i]+=v[0][i-1];
+            
+        for(int i=1;i<row;++i)
+        {
+            for(int j=1;j<col;++j)
+            {
+                v[i][j]=min(v[i-1][j],v[i][j-1])+v[i][j];
+            }
+        }
+        return v[row-1][col-1];
+    }
+};
