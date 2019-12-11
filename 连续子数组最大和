@@ -1,0 +1,42 @@
+
+/*
+思路：动态规划
+先用vector将输入存起来，然后更新vector中的元素。
+更新：
+需要求出的是子数组的连续最大和，所以：
+将每一个元素更新为：max(前面元素与自己和，元素本身)
+这样保证了每一个vector元素都是前面元素的最大和，
+遍历更新后的vector，找到最大值即可
+*/
+
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int main()
+{
+    int n=0;
+    cin >> n;
+    int num=0;
+    vector<int> v;
+    while(n--)
+    {
+        cin >> num;
+        v.push_back(num);
+    }
+    
+    for(int i=1;i<v.size();++i)
+    {
+        v[i]=max(v[i-1]+v[i],v[i]);
+    }
+    
+    int max_num=v[0];
+    for(auto e:v)
+    {
+        if(e>max_num)
+            max_num=e;
+    }
+    cout << max_num << endl;
+    
+    return 0;
+}
