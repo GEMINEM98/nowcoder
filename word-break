@@ -1,0 +1,33 @@
+
+/*
+思路：
+用vector存给定字符串的每个元素之前的字母能否组成dict中的单词
+v[i]：表示字符串s[0-i]是否能够组成dict中单词的bool值
+遍历给定字符串，如果前面的元素能够组成，那么判断true之后子串能否找到
+*/
+
+
+class Solution {
+public:
+    bool wordBreak(string s, unordered_set<string> &dict) {
+        int len=s.size();
+        vector<bool> v(len+1, false);//v[i]表示字符串s[0~i]是否可分的bool值
+        v[0]=true;
+        for(int i=1;i<=len;++i)
+        {
+            for(int j=0;j<i;++j)
+            {
+                if(v[j])
+                {
+                    // 这个单词在单词表里是否能找到
+                    if(dict.find(s.substr(j,i-j))!=dict.end())
+                    {
+                        v[i]=true;
+                        break;
+                    }
+                }
+            }
+        }
+        return v[len];
+    }
+};
