@@ -1,0 +1,82 @@
+/*
+思路：
+根据题意：从(0,0)到(i,j)的最短路径和
+中间的结点=min(两个子结点)+它本身
+F(i,j)=min(F(i-1,j),F(i-1,j-1))+triangle[i][j]
+每行第一个结点：j=0  F(i,j)=F(i-1,j)+triangle[i][j];
+每行最后一个结点：j=i  F(i,j)=F(i-1,j-1)+triangle[i][j];
+
+返回：min(F(row-1,j));
+       
+*/
+
+class Solution {
+public:
+    int minimumTotal(vector<vector<int> > &triangle) 
+    {
+       
+        
+        
+        // 初始化
+        vector<vector<int>> minSum(triangle);
+        int row=triangle.size();
+        int col=triangle[0].size();
+        for(int i=1;i<row;++i)
+        {
+            for(int j=0;j<=i;++j)
+            {
+                if(j==0)
+                {
+                    minSum[i][j]=minSum[i-1][j]+triangle[i][j];
+                }
+                else if(j==i)
+                {
+                    minSum[i][j]=minSum[i-1][j-1]+triangle[i][j];
+                }
+                else
+                {
+                    minSum[i][j]=min(minSum[i-1][j],minSum[i-1][j-1])+triangle[i][j];
+                }
+            }
+        }
+        
+        int allmin=minSum[row-1][0];
+        for(int i=1;i<row;++i)
+        {
+            allmin=min(minSum[row-1][i],allmin);
+        }
+        return allmin;
+    }
+};
+
+
+/*
+
+根据题意：
+求从(i,j)到最后一行的最短路径和
+结点=min(两个子结点)+它本身
+F(i,j)=min(F(i+1,j),F(i+1,j+1))+triangle[i][j]；
+返回: F(0,0)
+
+*/
+
+
+class Solution {
+public:
+    int minimumTotal(vector<vector<int> > &triangle) {
+        vector<vector<int>> minSum(triangle);
+        int row = triangle.size()-1;
+        int col = 0;
+        for(int i = row - 1; i >= 0; --i)
+        {
+            col = triangle[i].size() - 1;
+            for(int j = 0; j <= col; ++j)
+            {
+                minSum[i][j] = min(minSum[i + 1][j], 
+                                   minSum[i + 1][j + 1]) 
+                               + triangle[i][j];
+            }
+        }
+        return minSum[0][0];
+    }
+};
