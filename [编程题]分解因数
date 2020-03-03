@@ -1,0 +1,36 @@
+// write your code here cpp
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    int a=0;
+    while(cin>>a)
+    {
+        cout << a << " " << "=";
+        int i=2;
+        int tmp=0;
+        while(a>=2)
+        {
+            while(1)
+            {
+                if(a%i==0)
+                {
+                    if(tmp==0)
+                    {
+                        cout << " " << i;
+                        tmp=1;
+                    }
+                    else
+                        cout << " " << "*" << " " << i;
+                    break;
+                }
+                ++i;
+            }
+            a/=i;
+        }
+        cout << endl;
+    }
+    return 0;
+}
+
