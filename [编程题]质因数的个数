@@ -1,0 +1,31 @@
+// write your code here cpp
+#include<iostream>
+#include<cmath>
+using namespace std;
+/*
+任何一个合数都能被一个比它小的质数整除。
+*/
+ 
+int main()
+{
+    int a=0;
+    while(cin>>a)
+    {
+        int count=0;
+        for(int i=2;i<=sqrt(a);i++)
+        {
+            while(a%i==0)
+            {
+                ++count;
+                a/=i;
+            }
+        }
+        //例如：120，x逐渐变小，i逐渐变大，
+        //最后n=5时，i=3,不满足i<=a的条件，所以进不去循环，
+        //但是确实还存在一个质因数5，所以要加1。
+        if(a>1)  //若a仍大于1，则还有且只还有1个质因数
+            ++count;
+        cout << count << endl;
+    }
+    return 0;
+}
