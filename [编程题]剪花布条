@@ -1,0 +1,30 @@
+// write your code here cpp
+
+/*
+直接在s1中从头开始找s2，返回的下标p1始终是当前s1中第一个s2出现的位置，计数就可以了。
+*/
+
+#include<iostream>
+#include<string>
+using namespace std;
+
+int main()
+{
+    string s1,s2;
+    while(cin>>s1>>s2)
+    {
+        int p1=0;
+        int count=0;
+        while(p1<s1.size())
+        {
+            p1=s1.find(s2,p1);
+            if(p1!=string::npos)
+            {
+                ++count;
+                p1+=s2.size();
+            }
+        }
+        cout << count << endl;
+    }
+    return 0;
+}
