@@ -1,0 +1,27 @@
+// write your code here cpp
+
+#include<iostream>
+using namespace std;
+
+long long a[91]={0};
+void Func()
+{
+    a[1]=1;
+    a[2]=2;
+    for(int i=3;i<91;++i)
+    {
+        a[i]=a[i-1]+a[i-2];
+    }
+    return;
+}
+
+int main()
+{
+    int n=0;
+    while(cin>>n)
+    {
+        Func();
+        cout << a[n] << endl;
+    }
+    return 0;
+}
