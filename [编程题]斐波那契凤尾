@@ -1,0 +1,19 @@
+// write your code here cpp 
+#include<iostream> 
+using namespace std; 
+int f[100001]; 
+int main() 
+{ 
+    int num=0; 
+    f[0]=1; 
+    f[1]=1; 
+    for(int i=2;i<=100000;++i) { 
+        f[i]=(f[i-2]+f[i-1])%1000000; 
+    }
+    while(cin>>num) { 
+        if(num<29) 
+            cout << f[num] << endl; 
+        else printf("%06d\n",f[num]); 
+    }
+    return 0; 
+}
